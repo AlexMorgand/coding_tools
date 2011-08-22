@@ -1,0 +1,11 @@
+Jour 1 :
+ Apprentissage de l'environnement ROS
+  -> Création de package, construction, lancement
+  -> Fonctionnement des noeuds, topics (messages) exemple de la tortue
+ (un noeud tortue qui est lancé auquel on connecte un autre noeud pour les
+  touches tout ça pour le noeud initial /rosouti)
+  -> Meme principe que sur le Urbi actuel ce qui faciliterai l'interfaçage entre les deux 
+  -> Problématique => Pourquoi cela n'interfacerait pas ? 
+  -> Elaboration d'un serveur simple avec message (précision du message dans un format .msg ou .srv (en fonction de qui envoie quoi))
+  -> Bien comprendre le principe que c'est une surcouche => le code est ensuite généré en c++ ou python selon le choix.
+  
