@@ -1,0 +1,170 @@
+;; aller chercher les fichiers dans le bon repertoire
+(setq load-path (cons (expand-file-name "/u/all/burell_m/public/tuareg-mode")
+		                  load-path))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; append-tuareg.el - Tuareg quick installation: Append this file to .emacs.
+
+(setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+
+(autoload 'tiger-mode "tiger" "Load tiger-mode" t)
+(add-to-list 'auto-mode-alist '("\\.ti[gh]$" . tiger-mode))
+
+(if (and (boundp 'window-system) window-system)
+    (when (string-match "XEmacs" emacs-version)
+      (if (not (and (boundp 'mule-x-win-initted) mule-x-win-initted))
+            (require 'sym-lock))
+      (require 'font-lock)))
+
+;; Configuration  de tuareg
+(add-hook 'tuareg-mode-hook
+	  '(lambda ()
+	     (auto-fill-mode 1)
+     	     ; turn on auto-fill minor mode
+	     ; (passage a la ligne automatique)
+	     (define-key tuareg-mode-map [f4] 'goto-line)
+	     (define-key tuareg-mode-map [f5] 'compile)
+	     (define-key tuareg-mode-map [f6] 'recompile)
+	     (define-key tuareg-mode-map [f7] 'next-error)
+	     ; quelques raccourcis
+	     (setq tuareg-sym-lock-keywords nil)
+	     ; ne pas remplacer les mots cles par des symboles
+	     ))
+
+; Affichage des colonnes
+(setq column-number-mode t)
+
+;Affichage des lignes a gauche
+(line-number-mode 1)
+
+; La molette affecte le buffer sous la souris
+(setq mouse-wheel-follow-mouse t)
+
+; les tab font 2 espaces
+(setq tab-width 2)
+
+; indentation par pas de 2 espaces
+(setq standard-indent 2)
+
+; Hilight de la region selectionne au clavier
+(transient-mark-mode 1)
+
+; Pour etre sur de ne pas beeper
+;(setq visible-bell t)
+
+; option pour l'affichage des parentheses
+(setq show-paren-face 'modeline)
+
+(custom-set-variables
+  ;; Attention, cette partie ne doit apparaitre qu'une fois.
+  ;; Cette partie peut etre modifiee par le mode Custom d'emacs
+ '(show-paren-mode t nil (paren))
+ '(show-paren-style (quote parenthesis)))
+
+;; Color and revert
+(setq global-font-lock-mode t)
+
+(setq global-auto-revert-mode t)
+
+(c-set-offset 'substatement-open '0)
+
+;; <end> et <home> marche comme prevu sous emacs (fin et debut de
+;; buffer) dans tous les cas
+;;(global-set-key [home] 'beginning-of-buffer)
+;;(global-set-key [end]  'end-of-buffer)
+
+
+;(if (file-exists-p "~/.myemacs")
+;    (load-file "~/.myemacs"))
+;; EOF
+
+(put 'upcase-region 'disabled nil)
+
+;(start-kbd-macro)
+
+;(end-kbd-macro)
+
+
+;;function to slit the screen correctly for a good way of code :)
+
+ (defun my-split-window-function ()
+   (interactive)
+   (split-window-vertically)
+   (split-window-horizontally)
+   (other-window 2)
+   (ansi-term "/bin/bash")
+   (other-window 1))
+
+ (global-set-key [f4] 'my-split-window-function)
+
+(setq-default show-trailing-whitespace t)
+
+
+;; highlight when > 80 cols
+
+(defun eightycols nil
+    (defface line-overflow
+          '((t (:background "red" :foreground "black")))
+              "Face to use for `hl-line-face'.")
+      (highlight-regexp "^.\\{80,\\}$" 'line-overflow)
+      )
+
+     (add-hook 'find-file-hook 'eightycols)
+
+;; change the buffer by just cliking on the good buffer :)
+;; (xterm-mouse-mode t)
+
+(setq-default gdb-many-windows t)
+
+;; Autorise la séléction à l'aide de la touche SHIFT
+(custom-set-variables '(pc-selection-mode t nil (pc-select)))
+
+;; Ligne a gauche
+(global-linum-mode t)
+(setq linum-format "%3d ")
+
+
+;; Alt + Arrows -> Change buffer
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
+
+;(global-set-key [f12] ')
+(global-set-key [f11] 'split-window-horizontally)
+(global-set-key [f10] 'split-window-vertically)
+(global-set-key [f4] 'previous-error)
+(global-set-key [f3] 'next-error)
+(global-set-key [f2] 'recompile)
+(global-set-key [f5] 'compile)
+
+
+;; auto-complete
+
+;; http://github.com/m2ym/auto-complete
+
+;; puts the four .el files in this directory
+;;(setq load-path (cons "~/" load-path))
+;;(require 'auto-complete)
+;;(global-auto-complete-mode t)
+
+;; disable completio start
+;; (setq ac-auto-start nil)
+
+;; M-/ starts completion
+;; (global-set-key "\M-/" 'ac-start)
+
+;; M-/ stops completion
+;;(define-key ac-complete-mode-map "\M-/" 'ac-stop)
+
+;; start completion when entered 3 characters
+;; (setq ac-auto-start 3)
+
+;; Completion by tab
+;;(define-key ac-complete-mode-map "\t" 'ac-complete)
+;;(define-key ac-complete-mode-map "\r" nil)
+
+;;Do What I Mean mode, enabled by default
+;;     (setq ac-dwim t)
