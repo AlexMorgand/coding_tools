@@ -8,4 +8,9 @@ Jour 1 :
   -> Problématique => Pourquoi cela n'interfacerait pas ? 
   -> Elaboration d'un serveur simple avec message (précision du message dans un format .msg ou .srv (en fonction de qui envoie quoi))
   -> Bien comprendre le principe que c'est une surcouche => le code est ensuite généré en c++ ou python selon le choix.
-  
+ 
+Jour 2 :
+ Familiariser avec Urbi
+  -> Faire serveur client aussi.
+  -> Bouffer de la doc.
+Tentative d'interfaçage ? 

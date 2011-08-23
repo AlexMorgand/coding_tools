@@ -62,24 +62,25 @@ new_line=$'\n'
 autoload -U colors
 colors
 # define your colors here //Need to clean that shit PURPLE ? OTHER COLORS ?
-purple="purple"
-green="green"
+# affiche du vert -> echo -e '\e[1;32m{%}'
 yellow="yellow"
 red="red"
-blue="blue"
 gray="gray"
 white="white"
 red="%B%{$fg[$red]%}"
 blue="%B%{$fg[$blue]%}"
 light_yellow="%B%{$fg[$yellow]%}"
 dark_yellow="%{$fg[$yellow]%}"
-light_green="%B%{$fg[$green]%}"
-dark_green="%{$fg[$green]%}"
+light_green=`echo -e "\e[1;32m"`
+dark_green=`echo -e "\e[2;32m"`
+gold=`echo -e "\e[1;33m"`
+blue=`echo -e "\e[1;34m"`
+purple=`echo -e "\e[1;35m"`
 
 date=`date +%H:%M`
 #set prompt =
-PS1="${new_line}${red}$date ${blue}$?${reset_color} [ ${dark_yellow}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color} >$new_line$ "
-
+PS1="${new_line}${red}$date ${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
+PS2="${purple}>"
 
 # Pour ne pas avoir de "beep"
 unsetopt beep
@@ -91,4 +92,12 @@ alias ls='ls --color=auto'
 
 # editeur par default
 export EDITOR='vim'
+
+# Configuration pour ROS
 source /opt/ros/setup.zsh
+source /home/ballz/gostai/ros_workspace/setup.sh
+export PATH="/usr/bin/urbi/bin:$PATH"
+
+# Aliases
+alias ..="cd .."
+alias la="ls -la"
