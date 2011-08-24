@@ -53,6 +53,17 @@ UBindVar(UMachine, duration);
 Tentative d'interfaçage ? 
 
 
-TODO: FUSIONNER AVEC LA VERSION LOCALE !
 
 Compatibilite => comment ? Prendre les mêmes structures que le code généré ? (ROS => génère le code, avec urbi on essaye de les utiliser)
+
+compatibilité déja existante ! => Je pense qu'il faut juste la compléter, au peut etre qu'elle est dans un seul seul. A voir donc.
+
+Besoin de tester les events avec urbi, voir si les events eux sont bien mappés.
+
+Jour 3 :
+
+Apparemment la compatibilité avec ROS serait déjà faite mais non à jour pour la dernière version de ROS et de URBI. // Précisions à fournir.
+
+Test de la compatibilité OK => Première partie tout est fonctionnel.
+
+Il va falloir monter un Urbi sur ma machine pour vraiment tester si tout marche bien.
