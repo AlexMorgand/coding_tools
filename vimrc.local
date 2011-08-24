@@ -1,9 +1,0 @@
-" Vim conf by Ballz of Steel "
-
-:se nu
-
-" TODO Enable the a.vim plugin.
-
-" Set the path to the current directory
-set autochdir
-set ts=2

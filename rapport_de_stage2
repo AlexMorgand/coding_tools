@@ -51,8 +51,3 @@ UBindVar(UMachine, duration);
 
   -> Bouffer de la doc.
 Tentative d'interfaçage ? 
-
-
-TODO: FUSIONNER AVEC LA VERSION LOCALE !
-
-Compatibilite => comment ? Prendre les mêmes structures que le code généré ? (ROS => génère le code, avec urbi on essaye de les utiliser)
