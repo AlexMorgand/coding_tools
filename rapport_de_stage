@@ -1,4 +1,5 @@
 Jour 1 :
+
  Apprentissage de l'environnement ROS
   -> Création de package, construction, lancement
   -> Fonctionnement des noeuds, topics (messages) exemple de la tortue
@@ -67,3 +68,47 @@ Apparemment la compatibilité avec ROS serait déjà faite mais non à jour pour
 Test de la compatibilité OK => Première partie tout est fonctionnel.
 
 Il va falloir monter un Urbi sur ma machine pour vraiment tester si tout marche bien.
+
+Compatibilité = OK,
+
+Quelques changements à vérifier (ordre dans les dictionnaries, pas de signal pour un process foireux)
+
+Version 2.7.1 OK URBI/ROS
+
+Journée 4:
+
+Build du urbi sur ma machine.
+Probleme pour utilisateur zsh.
+Pourrait rendre le truc plus fluide pour les utilisateurs de zsh
+
+Journée 5:
+
+Toujours du build ... // FINISH => Commande à retenir au cas ou
+_________________________
+../../dev/ast-nodes-gen . < ast.yml // tout génerer
+rm src/ast/*.stamp; make -C _build/src
+ make -C _build all-am
+make -C _build check-doc -j4
+
+_________________________
+
+
+Apprentissage de GIT.
+TODO: mise à jour de la doc pour ROS.
+Apprendre à regarder la BF.
+=
+Je demande pas de créer de nouveaux projets sur la BF, mais de monitorer le kernel sur la BF.
+
+C'est a dire => surveiller les erreurs et les corriger quand je les comprends.
+
+
+ROS : // 
+Ros.topics shows that this turtle subscribes to a topic ‘/turtle1/command_velocity’
+
+or
+
+ Ros.topics =>
+
+ ["/turtle1/pose" => ["publishers" => ["/turtlesim"], "subscribers" => [], "type" => "turtlesim/Pose"], "/rosout" => ["publishers" => ["/turtlesim"], "subscribers" => ["/rosout"], "type" => "rosgraph_msgs/Log"], "/turtle1/color_sensor" => ["publishers" => ["/turtlesim", "/urbi_1314366064153905555"], "subscribers" => [], "type" => "turtlesim/Color"], "/rosout_agg" => ["publishers" => ["/rosout"], "subscribers" => [], "type" => "rosgraph_msgs/Log"]]
+
+as de turtle1/command_velocity
