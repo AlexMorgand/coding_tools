@@ -1,3 +1,4 @@
+
 Jour 1 :
 
  Apprentissage de l'environnement ROS
@@ -5,11 +6,11 @@ Jour 1 :
   -> Fonctionnement des noeuds, topics (messages) exemple de la tortue
  (un noeud tortue qui est lancé auquel on connecte un autre noeud pour les
   touches tout ça pour le noeud initial /rosouti)
-  -> Meme principe que sur le Urbi actuel ce qui faciliterai l'interfaçage entre les deux 
-  -> Problématique => Pourquoi cela n'interfacerait pas ? 
+  -> Meme principe que sur le Urbi actuel ce qui faciliterai l'interfaçage entre les deux
+  -> Problématique => Pourquoi cela n'interfacerait pas ?
   -> Elaboration d'un serveur simple avec message (précision du message dans un format .msg ou .srv (en fonction de qui envoie quoi))
   -> Bien comprendre le principe que c'est une surcouche => le code est ensuite généré en c++ ou python selon le choix.
- 
+
 Jour 2 :
  Familiariser avec Urbi
 
@@ -51,7 +52,7 @@ UBindVar(UMachine, duration);
 
 
   -> Bouffer de la doc.
-Tentative d'interfaçage ? 
+Tentative d'interfaçage ?
 
 
 
@@ -102,7 +103,7 @@ Je demande pas de créer de nouveaux projets sur la BF, mais de monitorer le ker
 C'est a dire => surveiller les erreurs et les corriger quand je les comprends.
 
 
-ROS : // 
+ROS : //
 Ros.topics shows that this turtle subscribes to a topic ‘/turtle1/command_velocity’
 
 or
@@ -112,3 +113,32 @@ or
  ["/turtle1/pose" => ["publishers" => ["/turtlesim"], "subscribers" => [], "type" => "turtlesim/Pose"], "/rosout" => ["publishers" => ["/turtlesim"], "subscribers" => ["/rosout"], "type" => "rosgraph_msgs/Log"], "/turtle1/color_sensor" => ["publishers" => ["/turtlesim", "/urbi_1314366064153905555"], "subscribers" => [], "type" => "turtlesim/Color"], "/rosout_agg" => ["publishers" => ["/rosout"], "subscribers" => [], "type" => "rosgraph_msgs/Log"]]
 
 as de turtle1/command_velocity
+
+Vérifier aussi pour ROSLIB/Log qui n'existe pas.
+
+
+Jour 6:
+
+Compilation (binaire présent mais erreur a cause du .so)
+
+Réparer les path pour ROS (Makefile)
+
+Réparation du contenu des process. (Pour ros on ne récupère pas lors
+d'une erreur)
+
+Script pour générer un format d'image Urbi à partir d'une image ROS
+
+
+Jour 7:
+
+Réparation compilation (enfin)
+
+Réparation des dépendance à l'aide de rospack cflags-only-I à mettre dans le Makefile
+
+g++ -I `rospack cflags-only-I rostime`  -I /ros_comm/clients/cpp/roscpp/include/ -I `rospack cflags-only-I rosconsole` -I `rospack cflags-only-I roscpp_serialization` -I `rospack cflags-only-I roscpp_traits` -I `cat test` -I `rospack cflags-only-I cpp_common` *.cc
+
+rostime roscpp rosconsole roscpp_serialization roscpp_traits cpp_common
+
+Jour 8
+Ticket finish / Exploration du script pour la convertion d'image.
+Constat : Si executé trop vite les subscribe ne marche pas (exemple du chatter si le serveur n'est pas encore prêt on ne peut pas subscribe)
