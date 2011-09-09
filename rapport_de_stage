@@ -1,3 +1,6 @@
+CHECK FIXME AND TODO:
+
+
 
 Jour 1 :
 
@@ -142,3 +145,88 @@ rostime roscpp rosconsole roscpp_serialization roscpp_traits cpp_common
 Jour 8
 Ticket finish / Exploration du script pour la convertion d'image.
 Constat : Si executé trop vite les subscribe ne marche pas (exemple du chatter si le serveur n'est pas encore prêt on ne peut pas subscribe)
+
+Jour 9
+Mise à jour de la doc, Nouveaux tickets, Amélioration du UBinary pour obtenirla width, height, size ou le format d'une image.
+
+Jour 10
+
+Fin du Ubinary pour les images. Possibilité d'avoir les dimensions d'un jpeg
+
+TODO:
+
+Vérifier que les infos dans ROS sont bien lu dans URBI.
+Arrive pas à voir les logs quand la tortue bouge (rostopic echo /turtle1/command_velocity)²
+FIX le cas de la turtle !
+
+Urbi : Ros.topics; != rostopic list;
+
+
+Problème de reception des infos venant de ROS (exemple turtlesim => on ne peut pas récupérer la vitesse)
+
+Charger des images venant de ROS (venant d'un dossier par exemple pour tester le script rosscript.u)
+
+TODO: Pour les tickets => dans le git log => si reponse a un ticket mettre un #numero_ticket pour que redmine gere derriere
+
+Jour 11:
+
+Faire marcher le script de guillaume. DONE
+
+Tester en remote.
+
+Faire marcher le flux video
+
+
+/!\ Si jamais make -C modules ne marche pas => git-my-update dans submodules/modules
+
+Jour 12:
+
+Finition de la documentation pour les envoie publisher d'image de ROS.
+
+TODO : Développer un paragraphe sur rxgraph ??
+
+Finir UBinary + echange image urbi => ROS et stream image video
+
+TODO : bien préciser l'endroit du travail pour les commits
+TODO = PB avec format image ! marche que pour rgb et pas pour jpeg !
+
+Almost done pour l'envoie des images !
+
+Jour 13
+// Probleme connection OK mais echange d'image fail ...
+Regarder au niveau du format, c'est la ou ça plante (probleme de typage
+de la structure apparement)
+
+Jour 14
+Connection en remote
+ROS - ROS OK
+Urbi - ROS OK
+Ros - Urbi OK !
+
+Tester tous les tests actuels
+Ok pour turtlesim + tests avec message simple etc.
+
+Tester avec image.
+
+Toujours pb d'image envoie de urbi => ROS.
+Data corrompus ... + pb dans gestion binary dans le common-msg.cc
+
+voir => testchelou.u => surement probleme avec formatage rgb
+
+Jour 15
+DOC DONE.
+
+Problem segfault de temps en temps ...
+FIXME:
+URGENT: réparer entièrement le cas de URBI->ROS segfault de temps en temps sur l'échange !
+Voir avec Akim pour ça.
+common-msg.cc
+
+Nouveau travail sur les images.
+
+Tester les convertions de all.uob => bien fait ?
+
+Pas compris la partie avec matthieu (surement si binding avec UObject => pourrait être plus pratique avec ROS)
+Mettre une référence de test
+Inclure des tests
+

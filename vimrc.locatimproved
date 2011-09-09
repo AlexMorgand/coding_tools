@@ -1,0 +1,23 @@
+" Vim conf by Ballz of Steel "
+
+:se nu
+
+" TODO Enable the a.vim plugin.
+
+" Set the path to the current directory
+set autochdir
+
+" One tab = 2 spaces
+set ts=2
+
+" If columns > 80 => highlight extra characters with red
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
+
+" The following alternative may be less obtrusive.
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+
+" Show trailing whitespace:
+:match ExtraWhitespace /\s\+\%#\@<!$/
+
+autocmd BufWritePre * :%s/\s\+$//e
