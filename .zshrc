@@ -44,7 +44,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 #xset b off
 
 # couleurs
-eval `dircolors $HOME/.zsh/colors`
+eval `dircolors /home/ballz/.zsh/colors`
 autoload -U zutil
 autoload -U compinit
 autoload -U complist
@@ -57,6 +57,35 @@ esac
 
 #new line
 new_line=$'\n'
+
+# Option pour GIT
+
+setopt prompt_subst
+
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' stagedstr '%F{green}✓'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}✗'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' branchformat '%b%F{1}:%F{11}%r'
+zstyle ':vcs_info:*' enable git svn hg
+zstyle ':vcs_info:*' get-revision true
+
+setopt prompt_subst
+
+which vcs_info >&-
+if [ $? -eq 0 ]; then
+	if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]
+	{
+		zstyle ':vcs_info:*' formats "on$cyan [%s:%b:%7.7i%c%u$cyan]"
+	}
+  else
+	{
+		zstyle ':vcs_info:*' formats "on$cyan [%s:%b:%7.7i%c%u%F{red}?$cyan]"
+	}
+	vcs_info
+fi
+
 
 # for have colors
 autoload -U colors
@@ -79,8 +108,12 @@ purple=`echo -e "\e[1;35m"`
 
 date=`date +%H:%M`
 #set prompt =
-PS1="${new_line}${red}$date ${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
+#PS1="${new_line}${red}%T ${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
+PS1="${new_line}${vcs_info_msg_0_}${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
 PS2="${purple}>"
+
+# Move to the left => Color is the enemy
+RPS1=%F{yellow}{%f%F{red}%T%f%F{yellow}}%f
 
 # Pour ne pas avoir de "beep"
 unsetopt beep
@@ -94,10 +127,24 @@ alias ls='ls --color=auto'
 export EDITOR='vim'
 
 # Configuration pour ROS
-source /opt/ros/setup.zsh
+source /opt/ros/diamondback/setup.zsh
 source /home/ballz/gostai/ros_workspace/setup.sh
 export PATH="/usr/bin/urbi/bin:$PATH"
+export PATH="/home/ballz/gostai/git/common/git:$PATH"
 
 # Aliases
 alias ..="cd .."
 alias la="ls -la"
+alias urbi="rlwrap urbi -q -i"
+alias rm="rm -i"
+alias grep="grep --color=auto"
+alias kcd="cd /home/ballz/gostai/git/kernel"
+
+alias urbi2="rlwrap /home/ballz/gostai/git/kernel/_build/tests/bin/urbi -i"
+
+# Suggestions for installations
+source /etc/zsh_command_not_found
+
+# Enlève doublons dans l'historique
+setopt histignoredups
+

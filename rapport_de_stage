@@ -161,9 +161,6 @@ FIX le cas de la turtle !
 
 Urbi : Ros.topics; != rostopic list;
 
-
-Problème de reception des infos venant de ROS (exemple turtlesim => on ne peut pas récupérer la vitesse)
-
 Charger des images venant de ROS (venant d'un dossier par exemple pour tester le script rosscript.u)
 
 TODO: Pour les tickets => dans le git log => si reponse a un ticket mettre un #numero_ticket pour que redmine gere derriere
@@ -229,4 +226,23 @@ Tester les convertions de all.uob => bien fait ?
 Pas compris la partie avec matthieu (surement si binding avec UObject => pourrait être plus pratique avec ROS)
 Mettre une référence de test
 Inclure des tests
+
+Jour 16:
+
+Réparation du probleme du publisher, la structure de l'arbre n'était pas bonne.
+
+Jour 17:
+
+Debut du boulot sur les images et les conversions avec all
+
+utiliser urbi launch, loader test/all, conversion qui fait tout!
+
+Jour 18:
+
+OK pour les conversion.
+Automatisation des tests dans le depot.
+Déplacement de dossiers, création de nouveaux.
+Conversion dans TOUS les sens !
+
+TODO: Voir si on n'a pas cassé des tests. => test-suite.u
 

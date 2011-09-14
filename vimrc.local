@@ -11,5 +11,13 @@ set autochdir
 set ts=2
 
 " If columns > 80 => highlight extra characters with red
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
-match OverLength /\%81v.*/ 
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
+
+" The following alternative may be less obtrusive.
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+
+" Show trailing whitespace:
+:match ExtraWhitespace /\s\+\%#\@<!$/
+
+autocmd BufWritePre * :%s/\s\+$//e
