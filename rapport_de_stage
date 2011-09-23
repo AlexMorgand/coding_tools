@@ -213,7 +213,7 @@ voir => testchelou.u => surement probleme avec formatage rgb
 Jour 15
 DOC DONE.
 
-Problem segfault de temps en temps ...
+Problem segfault de temps en temps .. // FIXED.
 FIXME:
 URGENT: réparer entièrement le cas de URBI->ROS segfault de temps en temps sur l'échange !
 Voir avec Akim pour ça.
@@ -246,3 +246,83 @@ Conversion dans TOUS les sens !
 
 TODO: Voir si on n'a pas cassé des tests. => test-suite.u
 
+Maintenant que le système de chk passe bien => ajouter pour ROS aussi !
+
+chk marche pas pour l'instant pour uconversion (probleme d'ajout + probleme de la conversion format A -> format A
+
+Jour 19:
+
+Debug des conversions images (conversion qui marche pas en jpeg)
+
+Jour 20:
+
+fin debug de la conversion images (ok pour les jpeg => all)
+
+Fin doc ros.
+
+Modif architecture, modif convert + wrapper.
+
+Jour 21:
+
+Il va falloir faire les références à la main pour les images ...
+
+Réparation des tests ROS dans le depot kernel (pas les même packages pour les messages etc ...)
+Installation de ROS avec la buildfarm
+
+Derniers pb pour les refs :
+
+[00001491] *** rgb  to yuv420_planar
+[00001571] *** grey8  to yuv411_planar
+[00001630] *** yuv411_planar  to yuv420_planar
+[00001827] *** jpeg  to yuv420_planar
+[00001883] *** ppm  to yuv411_planar
+[00001927] *** ppm  to yuv420_planar
+
+UPGRADE TO DIAMONBACK
+
+Jour 22:
+
+rosversion -d => peut etre utile
+
+Modification de param de ros ! TODO ?
+
+Fix le pb pour le disconnect => TOVERIFY
+
+Accès à la bf1 => ssh build@bf1
+
+Jour 23:
+
+FIN ros doc for images
+TOVERIFY BY AKIM => conversion d'image marche mais est ce que
+le système est ok ?
+
+Début de la buildfarm
+
+Interessant => rosversion ros => donne le bon numéro
+
+Jour 24:
+
+Ok pour les tests sur la bf => installer ROS DB /opt ?
+
+couper le build slave => buildslave stop ~/urbi-sdk_x86_linux_gcc-4 ...
+
+buildslave start pour remettre
+
+Etapes:
+
+-Installation version complete ?
+-Tests d'intégration ?
+-Tests ROS
+
+ Jour 25:
+
+OK pour la version Ubuntu => need fix les derniers probl => include de ROS, makefile pour le rosmake (FIXED mais non mis sur la BF)
+
+Fix module.ac pour mise à jour DB.
+
+Mise à jour travail sur les UBinary => USound.
+
+Serait-il pertinent de faire une fonction Load pour les UBinary pour
+detecter si on a du son, image (on remplie les keywords de base).
+
+rosmake => peut on eviter de compiler les .lisp etc ...

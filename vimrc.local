@@ -7,8 +7,7 @@
 " Set the path to the current directory
 set autochdir
 
-" One tab = 2 spaces
-set ts=2
+set ts=8
 
 " If columns > 80 => highlight extra characters with red
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
