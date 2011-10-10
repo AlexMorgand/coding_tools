@@ -1,5 +1,6 @@
 " Vim conf by Ballz of Steel "
 
+" Display numbers.
 :se nu
 
 " TODO Enable the a.vim plugin.
@@ -7,16 +8,21 @@
 " Set the path to the current directory
 set autochdir
 
+" Change tab into spaces.
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
 set ts=8
 
-" If columns > 80 => highlight extra characters with red
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.*/
+" Show when you go beyond 80 characters.
+:au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
-" The following alternative may be less obtrusive.
+" Show trailing whitespaces.
 :highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 
 " Show trailing whitespace:
 :match ExtraWhitespace /\s\+\%#\@<!$/
 
+" Replace trailingspaces when saving the file.
 autocmd BufWritePre * :%s/\s\+$//e

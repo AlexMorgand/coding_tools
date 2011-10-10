@@ -89,9 +89,6 @@ alias createcc='sh ~/tools/createcc.sh'
 alias rep='sh ~/tools/rep.sh'
 alias gcc='gcc -Wall -W -Werror -ansi -pedantic'
 alias sound='alsamixer -c 0'
-fbsetbg ~/bras-d-honneur-Small-.jpg
-#fbsetbg ~/fouilli/bf23.jpg
-#fbsetbg ~/birene.jpg
 alias norme="perl ~/tools/norme.pl"
 alias norme++="perl ~/tools/normeC++.pl"
 alias g++="g++ -Wall -Wextra -Wabi -std=c++98 -pedantic"
@@ -119,11 +116,16 @@ fi
 #Useless colors for ls
 alias ls='ls --color=auto'
 
-#Useless colors for ls
 alias Megadeth=" echo '\m/ \m/ \m/'"
 
+alias urbi="rlwrap urbi -q -i"
 
 #Add for bison
 
 export PATH=$HOME/bin:$HOME/lib:$HOME/share:$PATH
-source /opt/ros/setup.bash
+
+#Add for ROS
+source /opt/ros/diamondback/setup.bash
+source /home/ballz/gostai/ros_workspace/setupbash.sh
+export PATH="/usr/bin/urbi/bin:$PATH"
+export PATH="/home/ballz/gostai/git/common/git:$PATH"

@@ -26,13 +26,14 @@ Jour 2 :
         -> Déclarer dans urbi l'objet => UStart(UMachine)
 
          class UMachine
-  				: public urbi::UObject
+                : public urbi::UObject
 
-					/// Urbi constructor.
-					/// \param d the duration of the assembly process.
-					///           Must be positive.
-					/// \return 0 on success.
-						int init(ufloat d);
+                /// Urbi constructor.
+		/// \param d the duration of the assembly process.
+		///           Must be positive.
+		/// \return 0 on success.
+		int init(ufloat d);
+
 pas oublier en private
 
 private:
@@ -326,3 +327,49 @@ Serait-il pertinent de faire une fonction Load pour les UBinary pour
 detecter si on a du son, image (on remplie les keywords de base).
 
 rosmake => peut on eviter de compiler les .lisp etc ...
+
+Jour 26:
+
+Bf avec Akim => config pour le choix de la version de ROS sous la BF.
+Boulot sur les UBinary.
+
+Jour 27:
+
+UBinary => Fin du boulot, il faudrait un parser pour les formats avec headers.
+
+Jour 28:
+
+Identification du test repl-doubleIntTwo32.chk => Erreur vient de ROS !
+
+LES CONTACTER !!!
+
+Jour 29:
+
+Début du travail sur les packages debian.
+
+Jour 30:
+
+Blocage sur les packages debian à cause de l'absence de scripts
+du mec qui a généré les packages.
+
+Jour 31:
+
+Reprise du boulot sur les packages avec les mises à jour de Adam.
+
+Jour 32:
+
+Packages + BF + début test image exchanging.
+
+Jour 33:
+
+Update en DB et Electric Emys des bf. Probleme avec la debian (etch 4/.O ugh).
+Apprentissage avec stow => comme une gestion de paquet classique mais avec
+des tarball. on met dans share/packages, on stow pour faire les liens symbolique
+et on garde derriere les packages. Pour uninstall au final ça correspond juste à
+unstow et rm.
+
+Jour 34: Réparation de la bf, Fix les tests, fix la doc.
+
+Jour 35:
+
+Fin BF, release 2.7.3 de Urbi :), debut du travail sur Geshi.

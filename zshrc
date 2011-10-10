@@ -40,8 +40,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # source $HOME/.zsh/.zshrc
 
 # chut !
-#set nobeep
-#xset b off
+set nobeep
+xset b off
 
 # couleurs
 eval `dircolors /home/ballz/.zsh/colors`
@@ -50,7 +50,7 @@ autoload -U compinit
 autoload -U complist
 compinit
 
-# Active le pavé numérique quand on se loggue en console
+## Active le pavé numérique quand on se loggue en console
 case "`tty`" in /dev/tty[1-6]*)
 setleds +num
 esac
@@ -58,7 +58,7 @@ esac
 #new line
 new_line=$'\n'
 
-# Option pour GIT
+## Option pour GIT
 
 setopt prompt_subst
 
@@ -76,22 +76,22 @@ setopt prompt_subst
 which vcs_info >&-
 if [ $? -eq 0 ]; then
 	if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]
-	{
+  {
 		zstyle ':vcs_info:*' formats "on$cyan [%s:%b:%7.7i%c%u$cyan]"
-	}
+  }
   else
-	{
-		zstyle ':vcs_info:*' formats "on$cyan [%s:%b:%7.7i%c%u%F{red}?$cyan]"
-	}
+  {
+    zstyle ':vcs_info:*' formats "on$cyan [%s:%b:%7.7i%c%u%F{red}?$cyan]"
+  }
 	vcs_info
 fi
-
-
-# for have colors
+#
+#
+## for have colors
 autoload -U colors
 colors
-# define your colors here //Need to clean that shit PURPLE ? OTHER COLORS ?
-# affiche du vert -> echo -e '\e[1;32m{%}'
+## define your colors here //Need to clean that shit PURPLE ? OTHER COLORS ?
+## affiche du vert -> echo -e '\e[1;32m{%}'
 yellow="yellow"
 red="red"
 gray="gray"
@@ -107,15 +107,14 @@ blue=`echo -e "\e[1;34m"`
 purple=`echo -e "\e[1;35m"`
 
 date=`date +%H:%M`
-#set prompt =
-#PS1="${new_line}${red}%T ${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
+#set prompt
 PS1="${new_line}${vcs_info_msg_0_}${blue}%0?${reset_color} [ ${gold}\\m/${reset_color} ${dark_green}%n${reset_color} ${red}\\m/${reset_color} @ ${dark_green} 8${RESET_COLOR}${blue}%~${reset_color}>$new_line$ "
 PS2="${purple}>"
 
 # Move to the left => Color is the enemy
 RPS1=%F{yellow}{%f%F{red}%T%f%F{yellow}}%f
 
-# Pour ne pas avoir de "beep"
+## Pour ne pas avoir de "beep"
 unsetopt beep
 unsetopt hist_beep
 unsetopt list_beep
@@ -127,8 +126,10 @@ alias ls='ls --color=auto'
 export EDITOR='vim'
 
 # Configuration pour ROS
-source /opt/ros/diamondback/setup.zsh
-source /home/ballz/gostai/ros_workspace/setup.sh
+# Electric
+source /opt/ros/electric/setup.zsh
+source /home/ballz/gostai/ros_workspace/setup-EE.sh
+
 export PATH="/usr/bin/urbi/bin:$PATH"
 export PATH="/home/ballz/gostai/git/common/git:$PATH"
 
@@ -141,10 +142,17 @@ alias grep="grep --color=auto"
 alias kcd="cd /home/ballz/gostai/git/kernel"
 
 alias urbi2="rlwrap /home/ballz/gostai/git/kernel/_build/tests/bin/urbi -i"
+alias e="emacs -nw"
+alias emacs="emacs -nw"
+alias diamondback="source /opt/ros/diamondback/setup.zsh
+                   source /home/ballz/gostai/ros_workspace/setup-DB.sh"
+
+alias electric="source /opt/ros/electric/setup.zsh
+                source /home/ballz/gostai/ros_workspace/setup-EE.sh"
 
 # Suggestions for installations
 source /etc/zsh_command_not_found
 
-# Enlève doublons dans l'historique
+## Enlève doublons dans l'historique
 setopt histignoredups
-
+setopt correct_all

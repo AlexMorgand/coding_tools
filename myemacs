@@ -168,3 +168,6 @@
 
 ;;Do What I Mean mode, enabled by default
 ;;     (setq ac-dwim t)
+
+(setq c-default-style "linux"
+          c-basic-offset 4)
